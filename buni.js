@@ -34,6 +34,12 @@ client.on('messageCreate', async msg => {
   cmd.run(client, msg, args);
 });
 
-client.on('guildMemberAdd', async (guild, member) => {
-  guild.addMemberRole(member.id, "739326324702707723");
+client.on('messageReactionAdd', async (msg, emoji, userID) => {
+  if (msg.id !== "739544190689476688") return;
+  msg.channel.guild.addMemberRole(userID, "739326324702707723");
+});
+
+client.on('messageReactionRemove', async (msg, emoji, userID) => {
+  if (msg.id !== "739544190689476688") return;
+  msg.channel.guild.removeMemberRole(userID, "739326324702707723");
 });
