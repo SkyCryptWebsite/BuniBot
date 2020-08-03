@@ -20,7 +20,7 @@ fs.readdir('./commands/', (err, files) => {
 
 client.on('ready', () => {
   console.log(`${client.user.username+"#"+client.user.discriminator} has successfully logged in`);
-  client.editStatus({name: `cat videos`, type: 3 });
+  client.editStatus({name: `over the universe`, type: 3 });
 });
 
 client.connect().catch(console.error);
