@@ -37,6 +37,7 @@ client.on('messageCreate', async msg => {
   if (args[0].startsWith("~")) return;
   const command = args.shift().toLowerCase();
   const cmd = commands.get(discord.resolveCommand(msg, command, commands));
+  if (!cmd) return msg.channel.createMessage(discord.embed(msg, "I could not find that command!"));
   cmd.run(client, msg, args);
 });
 

@@ -7,9 +7,11 @@ exports.resolveCommand = (msg, command, commands) => {
   if (!config.owners.includes(msg.author.id)) {
     keys = keys.filter(key => !config.ownerCommands.includes(key));
   }
-  return keys.sort((a, b) => {
+  const key = keys.sort((a, b) => {
     return levenshtein(command, a) - levenshtein(command, b);
   })[0];
+  if (levenshtein(command, key) > 3) return false;
+  return key;
 }
 
 exports.embed = (msg, text, header) => {
