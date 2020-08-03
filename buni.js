@@ -3,7 +3,7 @@ const discord = require('./discord.js');
 const Eris = require('eris');
 const fs = require('fs');
 const prefix = "~";
-const suggestionChannel = "738990231348314123";
+const autoVoteChannels = ["738990231348314123"];
 
 const client = new Eris(config.token);
 
@@ -27,7 +27,7 @@ client.connect().catch(console.error);
 
 client.on('messageCreate', async msg => {
   if (msg.author.bot || msg.type !== 0 || msg.author.discriminator === 0000) return;
-  if (msg.channel.id === suggestionChannel) {
+  if (autoVoteChannels.includes(msg.channel.id)) {
     msg.addReaction("👍");
     msg.addReaction("👎");
     return;
