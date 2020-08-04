@@ -2,8 +2,6 @@ const config = require('./config.json');
 const discord = require('./discord.js');
 const Eris = require('eris');
 const fs = require('fs');
-const prefix = "~";
-const autoVoteChannels = ["738990231348314123"];
 
 const client = new Eris(config.token);
 
@@ -27,13 +25,13 @@ client.connect().catch(console.error);
 
 client.on('messageCreate', async msg => {
   if (msg.author.bot || msg.type !== 0 || msg.author.discriminator === 0000) return;
-  if (autoVoteChannels.includes(msg.channel.id)) {
+  if (config.autoVoteChannels.includes(msg.channel.id)) {
     msg.addReaction("👍");
     msg.addReaction("👎");
     return;
   }
-  if (!msg.content.startsWith(prefix)) return;
-  const args = msg.content.slice(prefix.length).split(/\s+/);
+  if (!msg.content.startsWith(config.prefix)) return;
+  const args = msg.content.slice(config.prefix.length).split(/\s+/);
   if (args[0].startsWith("~")) return;
   const command = args.shift().toLowerCase();
   const cmd = commands.get(discord.resolveCommand(msg, command, commands));

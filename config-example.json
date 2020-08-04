@@ -1,5 +1,7 @@
 {
+  "autoVoteChannels": ["channel-id-1", "channel-id-2"],
   "owners": ["discord-id-1", "discord-id-2"],
   "ownerCommands": ["eval", "reload"],
+  "prefix": "~",
   "token": "your-bot-token"
 }
