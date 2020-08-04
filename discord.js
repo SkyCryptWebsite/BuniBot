@@ -25,7 +25,7 @@ exports.embed = (msg, text, header) => {
         text: `Requested by ${msg.author.username}#${msg.author.discriminator}`
       },
       timestamp: new Date(),
-      color: 0xFFB6C1
+      color: 0xBAED91
     }
   }
 }
