@@ -1,0 +1,5 @@
+{
+  "owners": ["discord-id-1", "discord-id-2"],
+  "ownerCommands": ["eval", "reload"],
+  "token": "your-bot-token"
+}
