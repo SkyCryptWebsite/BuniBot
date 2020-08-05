@@ -14,12 +14,13 @@ exports.resolveCommand = (msg, command, commands) => {
   return key;
 }
 
-exports.embed = (msg, text, header) => {
+exports.embed = (msg, text, header, fields) => {
   return {
     content: "",
     embed: {
       title: header,
       description: text,
+      fields: fields,
       footer: {
         icon_url: msg.author.avatarURL,
         text: `Requested by ${msg.author.username}#${msg.author.discriminator}`
