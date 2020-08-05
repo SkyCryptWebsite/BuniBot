@@ -5,14 +5,14 @@ const fs = require('fs');
 
 const client = new Eris(config.token);
 
-let commands = new Map();
+client.commands = new Map();
 
 fs.readdir('./commands/', (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
     let command = require(`./commands/${file}`);
     let commandName = file.split(".")[0];
-    commands.set(commandName, command);
+    client.commands.set(commandName, command);
   });
 });
 
@@ -34,7 +34,7 @@ client.on('messageCreate', async msg => {
   const args = msg.content.slice(config.prefix.length).split(/\s+/);
   if (args[0].startsWith("~")) return;
   const command = args.shift().toLowerCase();
-  const cmd = commands.get(discord.resolveCommand(msg, command, commands));
+  const cmd = client.commands.get(discord.resolveCommand(msg, command, client.commands));
   if (!cmd) return msg.channel.createMessage(discord.embed(msg, "I could not find that command!"));
   cmd.run(client, msg, args);
 });
