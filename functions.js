@@ -1,4 +1,4 @@
-const levenshtein = require('js-levenshtein');
+const distance = require("jaro-winkler");
 
 module.exports = {
   getBazaarProduct: (query, products) => {
@@ -12,7 +12,7 @@ module.exports = {
         resultMatch = product;
       }
       product.tagMatches = 0;
-      product.distance = levenshtein(product.name, query);
+      product.distance = distance(product.name, query, {caseSensitive: false});
       for (const part of query.split(" ")) {
         for (const tag of product.tag) {
           if (tag == part) {
