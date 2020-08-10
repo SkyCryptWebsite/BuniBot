@@ -4,7 +4,7 @@ const discord = require('../discord.js');
 module.exports = {
   description: "Displays this message.",
   run: (client, msg, args) => {
-    let keys = Array.from(client.commands.keys());
+    let keys = Array.from(client.commands.keys()).sort();
     if (!config.owners.includes(msg.author.id)) {
       keys = keys.filter(key => !config.ownerCommands.includes(key));
     }
