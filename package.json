@@ -7,6 +7,7 @@
     "eris": "^0.13.1",
     "eslint": "^7.0.0",
     "js-levenshtein": "^1.1.6",
+    "mathjs": "^7.1.0",
     "parse-ms": "^2.1.0"
   }
 }
