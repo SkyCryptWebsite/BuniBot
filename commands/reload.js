@@ -14,5 +14,6 @@ module.exports = {
     client.commands.set(commandName, command);
     msg.channel.createMessage(discord.embed(msg, `The command \`${commandName}\` has been reloaded.`));
     console.log(`The command \`${commandName}\` has been reloaded.`);
-  }
+  },
+  usage: "<command>"
 };

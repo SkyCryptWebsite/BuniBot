@@ -17,5 +17,6 @@ module.exports = {
     } catch (error) {
       msg.channel.createMessage(discord.embed(msg, `${msg.author.mention} -> Command Executed!`+`\`\`\`js\n`+code+`\`\`\``+`Error:\n`+`\`\`\`js\n`+error+`\`\`\``));
     }
-  }
+  },
+  usage: "<code>"
 }
