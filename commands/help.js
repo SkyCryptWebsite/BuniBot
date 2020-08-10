@@ -10,7 +10,8 @@ module.exports = {
     }
     let commandList = ``;
     for (key of keys) {
-      commandList += `\`${key}\` - ${client.commands.get(key).description}\n`;
+      const cmd = client.commands.get(key);
+      commandList += `\`${key}${cmd.usage ? " "+cmd.usage : ""}\` - ${cmd.description}\n`;
     }
     msg.channel.createMessage(discord.embed(msg, commandList, "Commands for Buni"));
   }
