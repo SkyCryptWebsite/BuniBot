@@ -4,7 +4,10 @@ const levenshtein = require('js-levenshtein');
 
 exports.commandHelp = (client, msg, command) => {
   const cmd = client.commands.get(command);
-  let fields = [{name: "Command", value: `\`${config.prefix+command}\``}, {name: "Description", value: cmd.description}, {name: "Usage", value: `\`\`\`${config.prefix+command+" "+cmd.usage}\`\`\``}];
+  let fields = [
+    {name: "Command", value: `\`${config.prefix+command}\``},
+    {name: "Description", value: cmd.description}, {name: "Usage", value: `\`\`\`${config.prefix+command+" "+cmd.usage}\`\`\``}
+  ];
   msg.channel.createMessage(exports.embed(msg, undefined, undefined, fields));
 }
 
