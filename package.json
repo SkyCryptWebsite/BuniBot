@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.2",
-    "eris": "^0.13.1",
-    "eslint": "^7.0.0",
+    "eris": "^0.13.3",
+    "eslint": "^7.6.0",
     "js-levenshtein": "^1.1.6",
     "mathjs": "^7.1.0",
     "parse-ms": "^2.1.0"
