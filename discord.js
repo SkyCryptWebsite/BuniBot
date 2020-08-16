@@ -29,13 +29,25 @@ module.exports = {
   resolveCommand: (msg, command, commands) => {
     let keys = Array.from(commands.keys());
     if (keys.includes(command)) return command;
+    for (const key of keys) {
+      if (commands.get(key).aliases.includes(command)) return key;
+    }
     if (!config.owners.includes(msg.author.id)) {
       keys = keys.filter(key => !config.ownerCommands.includes(key));
     }
-    const key = keys.sort((a, b) => {
+    let aliases = [];
+    for (const key of keys) {
+      aliases.push(commands.get(key).aliases.sort((a, b) => {
+        return levenshtein(command, a) - levenshtein(command, b);
+      })[0]);
+    }
+    console.log(aliases);
+    const alias = aliases.sort((a, b) => {
       return levenshtein(command, a) - levenshtein(command, b);
     })[0];
-    if (levenshtein(command, key) > 2) return false;
-    return key;
+    if (levenshtein(command, alias) > 2) return false;
+    for (key of keys) {
+      if (commands.get(key).aliases.includes(alias)) return key;
+    }
   }
 }
