@@ -35,7 +35,7 @@ module.exports = {
     const key = keys.sort((a, b) => {
       return levenshtein(command, a) - levenshtein(command, b);
     })[0];
-    if (levenshtein(command, key) > 3) return false;
+    if (levenshtein(command, key) > 2) return false;
     return key;
   }
 }
