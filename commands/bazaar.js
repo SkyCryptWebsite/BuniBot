@@ -23,6 +23,7 @@ updateProducts();
 setInterval(updateProducts, 60000);
 
 module.exports = {
+  aliases: ["b", "baz", "bazaar"],
   description: "Check prices for one or more items on Bazaar.",
   run: async (client, msg, args) => {
     let itemSearch = "";

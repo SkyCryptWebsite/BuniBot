@@ -6,6 +6,7 @@ const package = require('../package.json');
 const parseMS = require('parse-ms');
 
 module.exports = {
+  aliases: ["ev", "eval"],
   description: "A command to evaluate code.",
   run: async (client, msg, args) => {
     if (!config.owners.includes(msg.author.id)) return msg.channel.createMessage(discord.embed(msg, "This command may only be used by my owners!"));

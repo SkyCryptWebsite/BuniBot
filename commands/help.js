@@ -2,6 +2,7 @@ const config = require('../config.json');
 const discord = require('../discord.js');
 
 module.exports = {
+  aliases: ["h", "help"],
   description: "Displays this message.",
   run: (client, msg, args) => {
     let keys = Array.from(client.commands.keys()).sort();

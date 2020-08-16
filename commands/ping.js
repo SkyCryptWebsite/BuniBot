@@ -1,6 +1,7 @@
 const discord = require('../discord.js');
 
 module.exports = {
+  aliases: ["p", "ping"],
   description: "A command to check my ping.",
   run: async (client, msg, args) => {
     const now = Date.now();

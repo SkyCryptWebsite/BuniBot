@@ -2,6 +2,7 @@ const config = require('../config.json');
 const discord = require('../discord.js');
 
 module.exports = {
+  aliases: ["rl", "reload"],
   description: "A command to reload one of my modules.",
   run: (client, msg, args) => {
     if (!config.owners.includes(msg.author.id)) return msg.channel.createMessage(discord.embed(msg, "This command may only be used by my owner!"));

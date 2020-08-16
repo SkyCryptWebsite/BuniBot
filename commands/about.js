@@ -4,6 +4,7 @@ const parseMS = require('parse-ms');
 const discord = require('../discord.js');
 
 module.exports = {
+  aliases: ["a", "about"],
   description: "Displays information about me.",
   run: (client, msg, args) => {
     const uptime = parseMS(client.uptime);
