@@ -41,7 +41,6 @@ module.exports = {
         return levenshtein(command, a) - levenshtein(command, b);
       })[0]);
     }
-    console.log(aliases);
     const alias = aliases.sort((a, b) => {
       return levenshtein(command, a) - levenshtein(command, b);
     })[0];
