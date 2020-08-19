@@ -1,5 +1,6 @@
 const config = require("../config.json");
 const discord = require('../discord.js');
+const distance = require('jaro-winkler');
 const Eris = require('eris');
 const levenshtein = require('js-levenshtein');
 const package = require('../package.json');
