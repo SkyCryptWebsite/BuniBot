@@ -6,7 +6,7 @@ BuniBot is a Discord bot made for the SkyCrypt Community
 
 ### Installation
 
-Dillinger requires [Node.js](https://nodejs.org/) v14+ to run.
+BuniBot requires [Node.js](https://nodejs.org/) v14+ to run.
 
 Install the dependencies and start the server.
 
