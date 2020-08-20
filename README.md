@@ -12,7 +12,7 @@ Install the dependencies and start the server.
 
 ```sh
 $ cd BuniBot
-$ npm install -d
+$ npm install 
 $ node buni.js
 ```
 ### Development
