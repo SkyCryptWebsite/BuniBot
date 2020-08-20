@@ -1,7 +1,5 @@
 # BuniBot
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/SkyCryptWebsite/BuniBot/pulls) 
-
 BuniBot is a Discord bot made for the SkyCrypt Community
 
 ### Installation
