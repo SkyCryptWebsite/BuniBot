@@ -2,6 +2,7 @@
 
 BuniBot is a Discord bot made for the SkyCrypt Community
 
+![Node.js CI](https://github.com/SkyCryptWebsite/BuniBot/workflows/Node.js%20CI/badge.svg) 
 ### Installation
 
 BuniBot requires [Node.js](https://nodejs.org/) v14+ to run.
