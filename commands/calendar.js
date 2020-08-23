@@ -42,7 +42,7 @@ module.exports = {
         //using axio and InventiveTalent's API to give me the time might cache it later idk
         axios.get('https://hypixel-api.inventivetalent.org/api/skyblock/' + event + "/estimate")
         .then(function (response){
-            msg.channel.createMessage(discord.embed(msg, event + " This event will be at: " + response.data.estimateRelative));
+            msg.channel.createMessage(discord.embed(msg, event + " event will be at: " + response.data.estimateRelative));
         })
         
         
