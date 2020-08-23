@@ -4,17 +4,19 @@ const distance = require("jaro-winkler");
 //uses jaro-winkler to find the word that is closest to what the user typed
 function find_event(args){
     possibleEvents = ["Bank","Interest","Halloween","spookyFestival", "jerryWorkshop", "winter", "SeasonOfJerry", "newyear", "zoo", "darkauction"]
+    args = String(args)    
     let k = 0;
-    let event = "";
+    //in there so that it does not return an error if some one does not provide an argument
+    let event = "zoo";
     for (i of possibleEvents){
-        if (distance(String(i), String(args)) > k){
-            k = distance(String(i), String(args));
+        if (distance(i, args) > k){
+            k = distance(i, args);
             event = i;
             
         }
 
     } 
-    //Uhhhh there is 1000000% a better way to do this but right now I fucking hate this bitch ass script so this will do 
+    //not as efficient as it can be 
     if (event == "Bank" || event == "Interest" ){
         return "bank/interest";
     }
@@ -34,7 +36,7 @@ function find_event(args){
 
 module.exports = {
     aliases: ["c", "calendar"],
-    description: "calendar still testing",
+    description: "Gives the remaining time until the the next event arrives.",
     run: async (client, msg, args) => {
         event = find_event(args);
         //using axio and InventiveTalent's API to give me the time might cache it later idk
