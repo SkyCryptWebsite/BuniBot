@@ -159,9 +159,8 @@ module.exports = {
         {name: coinsMode ? "Earn Total" : "Sell Total",value: functions.formatNumber(totalSell, false, 100),inline: true}
       );
     }
-    let message = discord.embed(msg, undefined, title, fields);
-    message.embed.url = url;
-    message.embed.thumbnail = thumbnail;
+    const message = discord.embed(msg, undefined, title, fields);
+    message.embed.url = url, message.embed.thumbnail = thumbnail;
     msg.channel.createMessage(message);
   },
   usage: "[amount] <item>"
