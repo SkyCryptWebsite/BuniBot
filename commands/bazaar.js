@@ -54,7 +54,7 @@ module.exports = {
         const expression = args_[0].replace(/x/g, '*');
         try {
           amount = Math.ceil(math.evaluate(expression));
-        } catch(e) {
+        } catch (e) {
           throw msg.channel.createMessage(discord.embed(msg, `Couldn't evaluate mathematical expression: \`${expression.replace(/\`/g, '')}\``));
         }
       }
