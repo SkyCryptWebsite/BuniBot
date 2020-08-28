@@ -33,36 +33,17 @@ module.exports = {
     return resultMatch;
   },
   formatNumber: (number, floor, rounding = 10) => {
+    let roundFunc = floor ? Math.floor : Math.ceil;
     if (number < 1000) {
-      if (floor) {
-        return (Math.floor(number * rounding) / rounding).toFixed(Math.max(0, rounding.toString().length - 2))
-      }else {
-        return (Math.ceil(number * rounding) / rounding).toFixed(Math.max(0, rounding.toString().length - 2))
-      }
-    } else if(number < 10000) {
-      if (floor) {
-        return (Math.floor(number / 1000 * rounding) / rounding).toFixed(rounding.toString().length - 1) + 'K';
-      } else {
-        return (Math.ceil(number / 1000 * rounding) / rounding).toFixed(rounding.toString().length - 1) + 'K';
-      }
+      return Math.floor(number);
+    } else if (number < 10000) {
+      return (roundFunc(number / 1000 * rounding) / rounding).toFixed(rounding.toString().length - 1) + 'K';
     } else if (number < 1000000) {
-      if (floor) {
-        return (Math.floor(number / 1000 * rounding) / rounding).toFixed(rounding.toString().length - 1) + 'K';
-      } else {
-        return (Math.ceil(number / 1000 * rounding) / rounding).toFixed(rounding.toString().length - 1) + 'K';
-      }
-    } else if(number < 1000000000) {
-      if (floor) {
-        return (Math.floor(number / 1000 / 1000 * rounding) / rounding).toFixed(rounding.toString().length - 1) + 'M';
-      } else {
-        return (Math.ceil(number / 1000 / 1000 * rounding) / rounding).toFixed(rounding.toString().length - 1) + 'M';
-      }
+      return roundFunc(number / 1000) + 'K';
+    } else if (number < 1000000000) {
+      return (roundFunc(number / 1000 / 1000 * rounding) / rounding).toFixed(rounding.toString().length - 1) + 'M';
     } else {
-      if (floor) {
-        return (Math.floor(number / 1000 / 1000 / 1000 * rounding * 10) / (rounding * 10)).toFixed(rounding.toString().length) + 'B';
-      } else {
-        return (Math.ceil(number / 1000 / 1000 / 1000 * rounding * 10) / (rounding * 10)).toFixed(rounding.toString().length) + 'B';
-      }
+      return (roundFunc(number / 1000 / 1000 / 1000 * rounding * 10) / (rounding * 10)).toFixed(rounding.toString().length) + 'B';
     }
   }
 }
