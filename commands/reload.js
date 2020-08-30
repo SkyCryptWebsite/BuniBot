@@ -5,8 +5,8 @@ module.exports = {
   aliases: ["rl", "reload"],
   description: "A command to reload one of my modules.",
   run: (client, msg, args) => {
+    if (args[0] === undefined) return msg.channel.createMessage(discord.commandHelp(client, msg, "reload"));
     if (!config.owners.includes(msg.author.id)) return msg.channel.createMessage(discord.embed(msg, "This command may only be used by my owner!"));
-    if (!args || args.length < 1) return msg.channel.createMessage(discord.embed(msg, "You must provide a command to reload."));
     const commandName = args[0];
     if (!client.commands.has(commandName)) return msg.channel.createMessage(discord.embed(msg, "That command does not exist!"));
     delete require.cache[require.resolve(`./${commandName}.js`)];
