@@ -103,7 +103,7 @@ module.exports = {
     if (args[0] === undefined) {
       return discord.commandHelp(client, msg, "skills");
     }
-    const message = await msg.channel.createMessage(discord.embed(msg, `Awaiting API response... ${"<:beespin:"+emotes["beespin"].id+">"}`, `${args[0]}'s Skills`));
+    const message = await msg.channel.createMessage(discord.embed(msg, `Awaiting API response... ${"<a:beespin:"+emotes["beespin"].id+">"}`, `${args[0]}'s Skills`));
     let response;
     try {
       response = await axios(`https://sky.shiiyu.moe/api/v2/profile/${args[0]}`);
