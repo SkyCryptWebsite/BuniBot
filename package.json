@@ -8,7 +8,8 @@
     "eslint": "^7.7.0",
     "jaro-winkler": "^0.2.8",
     "js-levenshtein": "^1.1.6",
-    "mathjs": "^7.1.0",
+    "lodash": "^4.17.20",
+    "mathjs": "^7.2.0",
     "parse-ms": "^2.1.0"
   }
 }
