@@ -44,6 +44,8 @@ client.on('messageReactionAdd', (msg, emoji, userID) => {
   msg.channel.guild.addMemberRole(userID, "739326324702707723");
 });
 
+client.on("messageReactionAdd", discord.handleReaction);
+
 client.on('messageReactionRemove', (msg, emoji, userID) => {
   if (msg.id !== "739544190689476688") return;
   msg.channel.guild.removeMemberRole(userID, "739326324702707723");
