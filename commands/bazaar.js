@@ -6,7 +6,7 @@ const math = require('mathjs');
 let products = {};
 
 async function updateProducts() {
-  const bazaarResponse = await axios('https://sky.shiiyu.moe/api/v2/bazaar/');
+  const bazaarResponse = await axios('https://sky.lea.moe/api/v2/bazaar/');
   products = bazaarResponse.data;
   for (const productID in products) {
     const product = products[productID];
@@ -140,7 +140,7 @@ module.exports = {
         title = bazaarProduct.name,
         url = `https://bazaartracker.com/product/${bazaarProduct.name.toLowerCase().replace(/\ /g, '_')}`
         thumbnail = {
-          url: `https://sky.shiiyu.moe/item/${bazaarProduct.id}`
+          url: `https://sky.lea.moe/item/${bazaarProduct.id}`
         }
       }
     }
