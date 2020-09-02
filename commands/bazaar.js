@@ -140,7 +140,7 @@ module.exports = {
         title = bazaarProduct.name,
         url = `https://bazaartracker.com/product/${bazaarProduct.name.toLowerCase().replace(/\ /g, '_')}`
         thumbnail = {
-          url: `https://sky.lea.moe/item/${bazaarProduct.id}`
+          url: `https://sky.shiiyu.moe/item/${bazaarProduct.id}`
         }
       }
     }

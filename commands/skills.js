@@ -131,7 +131,7 @@ module.exports = {
     } else if (args.length > 1 && skillsSorted.includes(args[1].toLowerCase())) {
       customSkill = args[1].toLowerCase();
     }
-    const author = {name: `${profile.data.display_name}'s Skills (${profile.cute_name})`, url: `https://sky.lea.moe/stats/${profile.data.uuid}/${profile.data.profile.profile_id}`};
+    const author = {name: `${profile.data.display_name}'s Skills (${profile.cute_name})`, url: `https://sky.shiiyu.moe/stats/${profile.data.uuid}/${profile.data.profile.profile_id}`};
     const description =  `Total Skill XP: **${functions.formatNumber(profile.data.total_skill_xp)}**\nAverage Skill Level: **${(Math.floor(profile.data.average_level * 100) / 100).toFixed(2)}** (**${(Math.floor(profile.data.average_level_no_progress * 100) / 100).toFixed(2)}**) (**#${functions.formatNumber(profile.data.average_level_rank)}**)`
     const fields = [];
     const thumbnail = {url: `https://minotar.net/helm/${profile.data.uuid}/128`};
