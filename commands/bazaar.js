@@ -6,7 +6,7 @@ const math = require('mathjs');
 let products = {};
 
 async function updateProducts() {
-  const bazaarResponse = await axios('https://sky.lea.moe/api/v2/bazaar/');
+  const bazaarResponse = await axios('https://sky.shiiyu.moe/api/v2/bazaar/');
   products = bazaarResponse.data;
   for (const productID in products) {
     const product = products[productID];
