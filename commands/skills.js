@@ -106,7 +106,7 @@ module.exports = {
     const message = await msg.channel.createMessage(discord.embed(msg, `Awaiting API response... ${"<a:beespin:"+emotes["beespin"].id+">"}`, `${args[0]}'s Skills`));
     let response;
     try {
-      response = await axios(`https://sky.lea.moe/api/v2/profile/${args[0]}`);
+      response = await axios(`https://sky.shiiyu.moe/api/v2/profile/${args[0]}`);
     } catch (e) {
       let error = "Failed retrieving data from API.";
       if (e.response != null && e.response.data != null && 'error' in e.response.data) {
