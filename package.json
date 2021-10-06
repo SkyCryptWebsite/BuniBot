@@ -7,13 +7,13 @@
     "@iarna/toml": "^2.2.5",
     "axios": "^0.22.0",
     "chalk": "^4.1.2",
-    "eris": "^0.13.3",
+    "eris": "^0.15.1",
     "eslint": "^7.32.0",
     "jaro-winkler": "^0.2.8",
     "js-levenshtein": "^1.1.6",
-    "lodash": "^4.17.20",
-    "mathjs": "^7.2.0",
-    "parse-ms": "^2.1.0",
+    "lodash": "^4.17.21",
+    "mathjs": "^9.5.0",
+    "parse-ms": "^3.0.0",
     "patron": "github:LJNeon/patron"
   },
   "scripts": {
