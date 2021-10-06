@@ -1,5 +1,5 @@
 clientPermissions = ['sendMessages', 'embedLinks']
-prefixes = ['~', '@mention']
+prefixes = ['$', '@mention']
 
 [colors]
 default = 0xFFB6C1
