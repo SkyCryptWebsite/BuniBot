@@ -51,7 +51,12 @@ module.exports = {
         }
         coinsMode = true;
       } else if (!isNaN(parseInt(args_[0]))) {
-        amount = Math.ceil(math.evaluate(args_[0].replace(/x/g, '*')));
+        const expression = args_[0].replace(/x/g, '*');
+        try {
+          amount = Math.ceil(math.evaluate(expression));
+        } catch (e) {
+          throw msg.channel.createMessage(discord.embed(msg, `Couldn't evaluate mathematical expression: \`${expression.replace(/\`/g, '')}\``));
+        }
       }
       if (args_[0].length < 1 || (amount !== undefined && args_[1] === undefined)) return discord.commandHelp(client, msg, "bazaar");
       if (amount !== undefined && ['stack', 'stacks'].includes(args_[1].toLowerCase())) {
@@ -154,9 +159,8 @@ module.exports = {
         {name: coinsMode ? "Earn Total" : "Sell Total",value: functions.formatNumber(totalSell, false, 100),inline: true}
       );
     }
-    let message = discord.embed(msg, undefined, title, fields);
-    message.embed.url = url;
-    message.embed.thumbnail = thumbnail;
+    const message = discord.embed(msg, undefined, title, fields);
+    message.embed.url = url, message.embed.thumbnail = thumbnail;
     msg.channel.createMessage(message);
   },
   usage: "[amount] <item>"

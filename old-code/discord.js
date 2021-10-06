@@ -2,7 +2,18 @@ const config = require('./config.json');
 
 const levenshtein = require('js-levenshtein');
 
+const collectors = {};
+
 module.exports = {
+  collectReactions(msg, filter, onReact, duration) {
+    return new Promise(res => {
+      collectors[msg.id] = {onReact, filter};
+      setTimeout(() => {
+        res();
+        delete collectors[msg.id];
+      }, duration);
+    });
+  },
   commandHelp: (client, msg, command) => {
     const cmd = client.commands.get(command);
     let fields = [
@@ -24,6 +35,13 @@ module.exports = {
         },
         color: 0xBAED91
       }
+    }
+  },
+  handleReaction(msg, reaction, userId) {
+
+    const user = msg.channel.client.users.get(userId);
+    if(user && collectors[msg.id]?.filter(user)) {
+      collectors[msg.id].onReact(reaction, user);
     }
   },
   resolveCommand: (msg, command, commands) => {

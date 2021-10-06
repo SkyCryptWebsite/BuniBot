@@ -18,7 +18,7 @@ fs.readdir('./commands/', (err, files) => {
 
 client.on('ready', () => {
   console.log(`${client.user.username+"#"+client.user.discriminator} has successfully logged in`);
-  client.editStatus({name: `over the universe | ~help`, type: 3 });
+  client.editStatus({name: `over the universe | ${config.prefix}help`, type: 3 });
 });
 
 client.connect().catch(console.error);
@@ -39,12 +39,14 @@ client.on('messageCreate', async msg => {
   cmd.run(client, msg, args);
 });
 
-client.on('messageReactionAdd', async (msg, emoji, userID) => {
+client.on('messageReactionAdd', (msg, emoji, userID) => {
   if (msg.id !== "739544190689476688") return;
   msg.channel.guild.addMemberRole(userID, "739326324702707723");
 });
 
-client.on('messageReactionRemove', async (msg, emoji, userID) => {
+client.on("messageReactionAdd", discord.handleReaction);
+
+client.on('messageReactionRemove', (msg, emoji, userID) => {
   if (msg.id !== "739544190689476688") return;
   msg.channel.guild.removeMemberRole(userID, "739326324702707723");
 });
