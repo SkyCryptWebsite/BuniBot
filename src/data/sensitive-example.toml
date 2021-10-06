@@ -1,2 +1,2 @@
-owner = ["your-discord-id(s)"]
-token = "your-bot-token"
+owner = ['your-discord-id(s)']
+token = 'your-bot-token'
