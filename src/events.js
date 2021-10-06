@@ -8,6 +8,12 @@ client.once("ready", () => {
   log.info("Successfully logged in!");
   client.editStatus({name: `${client.users.size} users`, type: 3});
 });
+client.on("error", (err) => {
+  if(err.message.includes("Connection reset"))
+    return;
+
+  log.error(err);
+});
 client.on("messageCreate", async msg => {
   if(msg.author.bot || msg.webhookID || (msg.type !== 0 && msg.type !== 19))
     return;
@@ -29,9 +35,15 @@ client.on("messageCreate", async msg => {
       break;
   }
 });
-client.on("error", (err) => {
-  if(err.message.includes("Connection reset"))
+client.on("messageReactionAdd", (msg, emoji, userID) => {
+  if(msg.id !== "739544190689476688")
     return;
 
-  log.error(err);
+  msg.channel.guild.addMemberRole(userID, "739326324702707723");
+});
+client.on("messageReactionRemove", (msg, emoji, userID) => {
+  if(msg.id !== "739544190689476688")
+    return;
+
+  msg.channel.guild.removeMemberRole(userID, "739326324702707723");
 });
