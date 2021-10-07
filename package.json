@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.21.2",
-    "eris": "^0.13.3",
-    "eslint": "^7.7.0",
+    "axios": "^0.22.0",
+    "eris": "^0.15.1",
+    "eslint": "^7.32.0",
     "jaro-winkler": "^0.2.8",
     "js-levenshtein": "^1.1.6",
     "lodash": "^4.17.21",
-    "mathjs": "^7.5.1",
-    "parse-ms": "^2.1.0"
+    "mathjs": "^9.5.0",
+    "parse-ms": "^3.0.0"
   }
 }
