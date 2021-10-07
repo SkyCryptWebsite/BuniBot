@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "eris": "^0.13.3",
     "eslint": "^7.7.0",
     "jaro-winkler": "^0.2.8",
