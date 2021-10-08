@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "start":"node src/buni.js",
     "lint": "eslint src --ext .js",
     "test": "npm run lint --silent"
   },
