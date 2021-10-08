@@ -7,13 +7,13 @@ BuniBot is a Discord bot made for the SkyCrypt Community. It is not currently op
 
 BuniBot requires [Node.js](https://nodejs.org/) v14+ to run.
 
-Change config-example.json to config.json and replace with your details.
+Change `src/data/sensitive-example.toml` to `src/data/sensitive-example.toml` and replace with your details.
 
-Install the dependencies and run buni.js.
+Install the dependencies and run.
 
 ```sh
-$ npm install
-$ node buni.js
+$ npm ci
+$ npm run start
 ```
 ### Development
 
