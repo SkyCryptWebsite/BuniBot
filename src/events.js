@@ -7,7 +7,7 @@ import * as log from "./utilities/logger.js";
 
 client.once("ready", () => {
   log.info("Successfully logged in!");
-  client.editStatus({name: `over the universe | ${config.prefix}help`, type: 3});
+  client.editStatus({name: `over the universe | ${config.prefixes[0]}help`, type: 3});
 });
 client.on("error", (err) => {
   if(err.message.includes("Connection reset"))
