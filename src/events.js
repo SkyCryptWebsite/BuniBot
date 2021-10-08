@@ -1,12 +1,13 @@
 import {ResultType} from "patron";
 import client from "./services/client.js";
+import {config} from "./services/data.js";
 import handler from "./services/handler.js";
 import {send} from "./utilities/discord.js";
 import * as log from "./utilities/logger.js";
 
 client.once("ready", () => {
   log.info("Successfully logged in!");
-  client.editStatus({name: `${client.users.size} users`, type: 3});
+  client.editStatus({name: `over the universe | ${config.prefix}help`, type: 3});
 });
 client.on("error", (err) => {
   if(err.message.includes("Connection reset"))
