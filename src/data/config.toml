@@ -2,7 +2,7 @@ clientPermissions = ['sendMessages', 'embedLinks']
 prefixes = ['$', '@mention']
 
 [colors]
-default = 0xFFB6C1
+default = 0xF4C482
 failure = 0xFF4136
 success = 0x2ECC40
 promise = 0x7FDBFF
