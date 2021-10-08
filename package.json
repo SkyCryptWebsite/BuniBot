@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "lint": "eslint src --ext .js",
+    "test": "npm run lint --silent"
+  },
   "dependencies": {
     "@iarna/toml": "^2.2.5",
     "axios": "^0.22.0",
@@ -14,10 +18,6 @@
     "mathjs": "^9.5.0",
     "parse-ms": "^3.0.0",
     "patron": "github:LJNeon/patron"
-  },
-  "scripts": {
-    "lint": "eslint src --ext .js",
-    "test": "npm run lint --silent"
   },
   "devDependencies": {
     "eslint": "^7.32.0"
