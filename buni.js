@@ -39,9 +39,9 @@ client.on('messageCreate', async msg => {
   cmd.run(client, msg, args);
 });
 
-client.on('messageReactionAdd', (msg, emoji, userID) => {
+client.on('messageReactionAdd', (msg, emoji, user) => {
   if (msg.id !== "739544190689476688") return;
-  msg.channel.guild.addMemberRole(userID, "739326324702707723");
+  msg.channel.guild.addMemberRole(user.id, "739326324702707723");
 });
 
 client.on("messageReactionAdd", discord.handleReaction);
