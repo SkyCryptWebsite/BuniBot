@@ -4,7 +4,6 @@ const distance = require('jaro-winkler');
 const Eris = require('eris');
 const levenshtein = require('js-levenshtein');
 const package = require('../package.json');
-const parseMS = require('parse-ms');
 
 module.exports = {
   aliases: ["ev", "eval"],
