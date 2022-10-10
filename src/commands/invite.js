@@ -9,7 +9,7 @@ export default new class Invite extends Command {
       names: ["invite", "inv"]
     });
   }
-  async run(msg) {
+  run(msg) {
     send(msg.channel, "[**Click this to invite me to a server.**]"
       + "(https://discord.com/api/oauth2/authorize?client_id=664968475068071957&permissions=604367937&scope=bot)");
   }
