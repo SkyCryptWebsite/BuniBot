@@ -35,13 +35,13 @@ client.on("messageCreate", async msg => {
       break;
   }
 });
-client.on("messageReactionAdd", (msg, emoji, userID) => {
+client.on("messageReactionAdd", (msg, _emoji, userID) => {
   if(msg.id !== "739544190689476688")
     return;
 
   msg.channel.guild.addMemberRole(userID, "739326324702707723");
 });
-client.on("messageReactionRemove", (msg, emoji, userID) => {
+client.on("messageReactionRemove", (msg, _emoji, userID) => {
   if(msg.id !== "739544190689476688")
     return;
 
