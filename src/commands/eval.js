@@ -2,7 +2,7 @@ import {Command} from "patron";
 import {inspect} from "util";
 import {config} from "../services/data.js";
 import {editMessage, send} from "../utilities/discord.js";
-import {hrformat} from "../utilities/times.js";
+import {formatTime} from "../utilities/times.js";
 
 function cleanError(error) {
   //regex only works on linux systems
@@ -52,11 +52,11 @@ export default new class Eval extends Command {
 
       return send(msg.channel, {
         color: config.colors.failure,
-        description: `**Throws with:**${clean(err)}in ${hrformat(end - start)}`
+        description: `**Throws with:**${clean(err)}in ${formatTime(end - start)}`
       });
     }
 
-    const description = `**Evaluates to:**${clean(result)}in ${hrformat(end - start)}`;
+    const description = `**Evaluates to:**${clean(result)}in ${formatTime(end - start)}`;
     const response = await send(msg.channel, {
       color: config.colors.success,
       description
@@ -67,10 +67,10 @@ export default new class Eval extends Command {
 
     await result.then(res => editMessage(response, {
       color: config.colors.promise,
-      description: `${description}\n\n**Which resolves to:**${clean(res)}in ${hrformat(pEnd - start)}`
+      description: `${description}\n\n**Which resolves to:**${clean(res)}in ${formatTime(pEnd - start)}`
     }), rej => editMessage(response, {
       color: config.colors.promise,
-      description: `${description}\n\n**Which rejects with:**${clean(rej)}in ${hrformat(pEnd - start)}`
+      description: `${description}\n\n**Which rejects with:**${clean(rej)}in ${formatTime(pEnd - start)}`
     }));
   }
 }();

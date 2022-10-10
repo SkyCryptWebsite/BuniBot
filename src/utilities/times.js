@@ -5,7 +5,7 @@ const units = [
   {duration: 1, name: "ns"}
 ];
 
-export function hrformat(ns) {
+export function formatTime(ns) {
   for(const unit of units) {
     if(ns < unit.duration)
       continue;
