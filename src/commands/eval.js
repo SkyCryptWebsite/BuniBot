@@ -1,76 +1,97 @@
-import {Command} from "patron";
-import {inspect} from "util";
-import {config} from "../services/data.js";
-import {editMessage, send} from "../utilities/discord.js";
-import {formatTime} from "../utilities/times.js";
+import { Command } from "patron";
+import { inspect } from "util";
+import { colors } from "../services/data.js";
+import { editMessage, send } from "../utilities/discord.js";
+import { formatTime } from "../utilities/times.js";
 
 function cleanError(error) {
   //regex only works on linux systems
-  return error.replace(/(file:\/+)?[/\w-]+\.js:\d+:\d+/g, path => path.slice(path.lastIndexOf("/") + 1));
+  return error.replace(/(file:\/+)?[/\w-]+\.js:\d+:\d+/g, (path) =>
+    path.slice(path.lastIndexOf("/") + 1)
+  );
 }
 
 function clean(result) {
-  let cleaned = inspect(result, {maxArrayLength: 3})
+  let cleaned = inspect(result, { maxArrayLength: 3 })
     .replace(/```/g, "``\u200B`")
     .replace(/Promise { (?!<pending>)[^}\n]+}/g, "Promise { <pending> }");
 
-  if(result instanceof Error)
+  if (result instanceof Error)
     cleaned = cleanError(cleaned, true);
 
   return `\`\`\`js\n${cleaned.length > 1e3 ? "'Too long to display (>1000 characters)'" : cleaned}\n\`\`\``;
 }
 
-export default new class Eval extends Command {
+export default new (class Eval extends Command {
   constructor() {
     super({
-      arguments: [{
-        example: "new Promise(res => setTimeout(res, 1e4))",
-        key: "code",
-        remainder: true,
-        type: "string"
-      }],
+      arguments: [
+        {
+          example: "new Promise(res => setTimeout(res, 1e4))",
+          key: "code",
+          remainder: true,
+          type: "string",
+        },
+      ],
       description: "Evaluates JavaScript code.",
       group: "Owner",
-      names: ["eval", "ev"]
+      names: ["eval", "ev"],
     });
   }
   async run(msg, args) {
-    let result;
-    let end;
-    let pEnd;
-    let start;
-
     try {
-      start = process.hrtime.bigint();
-      result = eval(args.code);
-      end = process.hrtime.bigint();
+      const start = performance.now();
+      const result = eval(args.code);
+      const end = performance.now();
 
-      if(result instanceof Promise)
-        result.then(res => (pEnd = process.hrtime.bigint()) && res, rej => (pEnd = process.hrtime.bigint()) && rej);
-    }catch(err) {
-      end = process.hrtime.bigint();
+      let pEnd;
+      if (result instanceof Promise) {
+        await Promise.resolve(result)
+          .then(
+            (res) => (pEnd = performance.now()) && res,
+            (rej) => (pEnd = performance.now()) && rej
+          );
+      }
 
-      return send(msg.channel, {
-        color: config.colors.failure,
-        description: `**Throws with:**${clean(err)}in ${formatTime(end - start)}`
+      const description = `**Evaluates to:**${clean(
+        result
+      )}in ${formatTime(end - start)}`;
+
+      send(msg.channel, {
+        color: colors.success,
+        description,
+      }).then((response) => {
+        if (response == null || !(result instanceof Promise)) {
+          return;
+        }
+
+        Promise.resolve(result)
+          .then((res) =>
+            editMessage(response, {
+              color: colors.promise,
+              description: `${description}\n\n**Which resolves to:**${clean(
+                res
+              )}in ${formatTime(pEnd - start)}`,
+            })
+          )
+          .catch((rej) =>
+            editMessage(response, {
+              color: colors.promise,
+              description: `${description}\n\n**Which rejects with:**${clean(
+                rej
+              )}in ${formatTime(pEnd - start)}`,
+            })
+          );
+      });
+    } catch (err) {
+      const end = performance.now();
+      const description = `**Throws with:**${clean(err)}in ${formatTime(
+        end - start
+      )}`;
+      send(msg.channel, {
+        color: colors.failure,
+        description,
       });
     }
-
-    const description = `**Evaluates to:**${clean(result)}in ${formatTime(end - start)}`;
-    const response = await send(msg.channel, {
-      color: config.colors.success,
-      description
-    });
-
-    if(response == null || !(result instanceof Promise))
-      return;
-
-    await result.then(res => editMessage(response, {
-      color: config.colors.promise,
-      description: `${description}\n\n**Which resolves to:**${clean(res)}in ${formatTime(pEnd - start)}`
-    }), rej => editMessage(response, {
-      color: config.colors.promise,
-      description: `${description}\n\n**Which rejects with:**${clean(rej)}in ${formatTime(pEnd - start)}`
-    }));
   }
-}();
+})();
